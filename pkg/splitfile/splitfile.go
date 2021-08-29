@@ -53,9 +53,9 @@ func (chk Checksum) MarshalText() (text []byte, err error) {
 	return
 }
 
-func (chk Checksum) UnmarshalText(text []byte) error {
-	chk = make(Checksum, hex.DecodedLen(len(text)))
-	_, err := hex.Decode(chk, text)
+func (chk *Checksum) UnmarshalText(text []byte) error {
+	*chk = make(Checksum, hex.DecodedLen(len(text)))
+	_, err := hex.Decode(*chk, text)
 
 	return err
 }
